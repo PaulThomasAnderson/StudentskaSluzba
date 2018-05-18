@@ -27,16 +27,19 @@ public class Polaganje implements Serializable {
 		@JoinColumn(name="ispit_vreme", referencedColumnName="vreme", insertable=false, updatable=false)
 		})
 	private Ispit ispit;
-	
-	@ManyToOne
-	@JoinColumns({
-		@JoinColumn(name="student_osoba_id", referencedColumnName="osoba_id", insertable=false, updatable=false),
-		})
-	private Student student;
 
 	//bi-directional many-to-one association to Student
-//	@ManyToOne
-	//private Student student;
+	//@ManyToOne
+	//@JoinColumn(name="student_osoba_id", referencedColumnName="osoba_id")
+	//private Student student1;
+
+	//bi-directional many-to-one association to Student
+	@ManyToOne
+	@JoinColumns({
+		@JoinColumn(name="student_index", referencedColumnName="index", insertable=false, updatable=false),
+		@JoinColumn(name="student_osoba_id", referencedColumnName="osoba_id", insertable=false, updatable=false)
+		})
+	private Student student;
 
 	public Polaganje() {
 	}
@@ -69,8 +72,10 @@ public class Polaganje implements Serializable {
 		return this.student;
 	}
 
-	public void setStudent(Student student) {
-		this.student = student;
+	public void setStudent(Student student1) {
+		this.student = student1;
 	}
+
+
 
 }

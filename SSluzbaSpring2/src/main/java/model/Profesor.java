@@ -14,10 +14,8 @@ import java.util.List;
 public class Profesor implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="osoba_id")
-	private int osobaId;
+	@EmbeddedId
+	private ProfesorPK id;
 
 	private String seminar;
 
@@ -35,12 +33,12 @@ public class Profesor implements Serializable {
 	public Profesor() {
 	}
 
-	public int getOsobaId() {
-		return this.osobaId;
+	public ProfesorPK getId() {
+		return this.id;
 	}
 
-	public void setOsobaId(int osobaId) {
-		this.osobaId = osobaId;
+	public void setId(ProfesorPK id) {
+		this.id = id;
 	}
 
 	public String getSeminar() {

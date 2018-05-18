@@ -17,7 +17,7 @@ public class PredmetPK implements Serializable {
 	@Column(name="fakultet_id", insertable=false, updatable=false)
 	private int fakultetId;
 
-	@Column(name="profesor_osoba_id", insertable=false, updatable=false)
+	@Column(name="profesor_osoba_id")
 	private int profesorOsobaId;
 
 	public PredmetPK() {

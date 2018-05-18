@@ -14,20 +14,20 @@ import java.util.List;
 public class Student implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="osoba_id")
-	private int osobaId;
+	@EmbeddedId
+	private StudentPK id;
 
 	private String hobi;
-
-	private int index;
 
 	private String sport;
 
 	//bi-directional many-to-one association to Polaganje
 	@OneToMany(mappedBy="student")
-	private List<Polaganje> polaganjes;
+	private List<Polaganje> polaganjes1;
+
+	//bi-directional many-to-one association to Polaganje
+	//@OneToMany(mappedBy="student2")
+	//private List<Polaganje> polaganjes2;
 
 	//bi-directional one-to-one association to Osoba
 	@OneToOne
@@ -39,12 +39,12 @@ public class Student implements Serializable {
 	public Student() {
 	}
 
-	public int getOsobaId() {
-		return this.osobaId;
+	public StudentPK getId() {
+		return this.id;
 	}
 
-	public void setOsobaId(int osobaId) {
-		this.osobaId = osobaId;
+	public void setId(StudentPK id) {
+		this.id = id;
 	}
 
 	public String getHobi() {
@@ -55,14 +55,6 @@ public class Student implements Serializable {
 		this.hobi = hobi;
 	}
 
-	public int getIndex() {
-		return this.index;
-	}
-
-	public void setIndex(int index) {
-		this.index = index;
-	}
-
 	public String getSport() {
 		return this.sport;
 	}
@@ -71,27 +63,29 @@ public class Student implements Serializable {
 		this.sport = sport;
 	}
 
-	public List<Polaganje> getPolaganjes() {
-		return this.polaganjes;
+	public List<Polaganje> getPolaganjes1() {
+		return this.polaganjes1;
 	}
 
-	public void setPolaganjes(List<Polaganje> polaganjes) {
-		this.polaganjes = polaganjes;
+	public void setPolaganjes1(List<Polaganje> polaganjes1) {
+		this.polaganjes1 = polaganjes1;
 	}
 
-	public Polaganje addPolaganje(Polaganje polaganje) {
-		getPolaganjes().add(polaganje);
-		polaganje.setStudent(this);
+	public Polaganje addPolaganjes1(Polaganje polaganjes1) {
+		getPolaganjes1().add(polaganjes1);
+		polaganjes1.setStudent(this);
 
-		return polaganje;
+		return polaganjes1;
 	}
 
-	public Polaganje removePolaganje(Polaganje polaganje) {
-		getPolaganjes().remove(polaganje);
-		polaganje.setStudent(null);
+	public Polaganje removePolaganjes1(Polaganje polaganjes1) {
+		getPolaganjes1().remove(polaganjes1);
+		polaganjes1.setStudent(null);
 
-		return polaganje;
+		return polaganjes1;
 	}
+
+
 
 	public Osoba getOsoba() {
 		return this.osoba;

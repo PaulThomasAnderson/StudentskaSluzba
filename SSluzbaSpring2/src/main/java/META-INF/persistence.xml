@@ -12,6 +12,8 @@
 		<class>model.Predmet</class>
 		<class>model.PredmetPK</class>
 		<class>model.Profesor</class>
+		<class>model.ProfesorPK</class>
 		<class>model.Student</class>
+		<class>model.StudentPK</class>
 	</persistence-unit>
 </persistence>

@@ -22,11 +22,14 @@ public class Ispit implements Serializable {
 	//bi-directional many-to-one association to Predmet
 	@ManyToOne
 	@JoinColumns({
-		@JoinColumn(name="predmet_fakultet_id", referencedColumnName="fakultet_id", insertable=false, updatable=false),
-		@JoinColumn(name="predmet_id", referencedColumnName="id", insertable=false, updatable=false),
+		@JoinColumn(name="predmet_fakultet_id", referencedColumnName="id", insertable=false, updatable=false),
+		@JoinColumn(name="predmet_id", referencedColumnName="fakultet_id", insertable=false, updatable=false),
 		@JoinColumn(name="predmet_profesor_osoba_id", referencedColumnName="profesor_osoba_id", insertable=false, updatable=false)
 		})
 	private Predmet predmet;
+
+	//bi-directional many-to-one association to Predmet
+	
 
 	//bi-directional many-to-one association to Polaganje
 	@OneToMany(mappedBy="ispit")
@@ -55,10 +58,11 @@ public class Ispit implements Serializable {
 		return this.predmet;
 	}
 
-	public void setPredmet(Predmet predmet) {
-		this.predmet = predmet;
+	public void setPredmet(Predmet predmet1) {
+		this.predmet = predmet1;
 	}
 
+	
 	public List<Polaganje> getPolaganjes() {
 		return this.polaganjes;
 	}

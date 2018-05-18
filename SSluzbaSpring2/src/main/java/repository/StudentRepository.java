@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import model.Student;
 
 /**
-Created By Marko
+Created By Luka
 */
 
 public interface StudentRepository extends JpaRepository<Student, Integer>{

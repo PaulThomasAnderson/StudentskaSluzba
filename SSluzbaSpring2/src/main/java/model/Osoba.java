@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -19,9 +19,8 @@ public class Osoba implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name="god_rodjenja")
-	private Date godRodjenja;
+	private Timestamp godRodjenja;
 
 	private String ime;
 
@@ -57,12 +56,12 @@ public class Osoba implements Serializable {
 		this.id = id;
 	}
 
-	public Date getGodRodjenja() {
+	public Timestamp getGodRodjenja() {
 		return this.godRodjenja;
 	}
 
-	public void setGodRodjenja(Date godRodjenja) {
-		this.godRodjenja = godRodjenja;
+	public void setGodRodjenja(Timestamp timestamp) {
+		this.godRodjenja = timestamp;
 	}
 
 	public String getIme() {

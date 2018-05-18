@@ -24,7 +24,8 @@ public class Predmet implements Serializable {
 
 	//bi-directional many-to-one association to Ispit
 	@OneToMany(mappedBy="predmet")
-	private List<Ispit> ispits;
+	private List<Ispit> ispits1;
+
 
 	//bi-directional many-to-one association to Fakultet
 	@ManyToOne
@@ -67,27 +68,30 @@ public class Predmet implements Serializable {
 		this.naziv = naziv;
 	}
 
-	public List<Ispit> getIspits() {
-		return this.ispits;
+	public List<Ispit> getIspits1() {
+		return this.ispits1;
 	}
 
-	public void setIspits(List<Ispit> ispits) {
-		this.ispits = ispits;
+	public void setIspits1(List<Ispit> ispits1) {
+		this.ispits1 = ispits1;
 	}
 
-	public Ispit addIspit(Ispit ispit) {
-		getIspits().add(ispit);
-		ispit.setPredmet(this);
+	public Ispit addIspits1(Ispit ispits1) {
+		getIspits1().add(ispits1);
+		ispits1.setPredmet(this);
 
-		return ispit;
+		return ispits1;
 	}
 
-	public Ispit removeIspit(Ispit ispit) {
-		getIspits().remove(ispit);
-		ispit.setPredmet(null);
+	public Ispit removeIspits1(Ispit ispits1) {
+		getIspits1().remove(ispits1);
+		ispits1.setPredmet(null);
 
-		return ispit;
+		return ispits1;
 	}
+
+	
+	
 
 	public Fakultet getFakultet() {
 		return this.fakultet;

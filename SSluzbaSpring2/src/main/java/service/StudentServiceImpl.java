@@ -7,13 +7,17 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import dto.OsobaDTO;
 import dto.StudentDTO;
+import model.Osoba;
 import model.Student;
+import model.StudentPK;
+import repository.OsobaRepository;
 import repository.StudentRepository;
 import service.interfaces.IStudentService;
 
 /**
-Created By Marko
+Created By Luka
 */
 
 @Service
@@ -21,18 +25,42 @@ public class StudentServiceImpl implements IStudentService {
 	
 	@Autowired
 	private StudentRepository studentRepository;
+	
+	@Autowired
+	private OsobaRepository osobaRepository;
 
 	@Override
-	public StudentDTO save(StudentDTO studentDto) {
-		if(studentDto.getId()==0) {
-			Student student = new Student();
-			student.setHobi(studentDto.getHobi());
-			student.setIndex(studentDto.getIndex());
-			student.setSport(studentDto.getSport());
-			//student.setOsoba(studentDto.);
+	public void save(StudentDTO studentDTO) {
+		Student student;
+		Osoba osoba;
+		if(studentDTO.getIndex()==0) {
+		    student = new Student();
+		    osoba = new Osoba();
+			student.setHobi(studentDTO.getHobi());
+			student.getId().setIndex(studentDTO.getIndex());
+			student.setSport(studentDTO.getSport());
+			osoba.setIme(studentDTO.getOsoba().getIme());
+			osoba.setPrezime(studentDTO.getOsoba().getPrezime());
+			osoba.setPol(studentDTO.getOsoba().getPol());
+			osoba.setMesto(studentDTO.getOsoba().getMesto());
+			osoba.setPostanskiBr(studentDTO.getOsoba().getPostanskiBr());
+			osoba.setGodRodjenja(studentDTO.getOsoba().getGod_rodjenja());
+			student.setOsoba(osoba);
+		}else {
+			student = studentRepository.findById(studentDTO.getIndex()).orElse(null);
+
+			if(student==null) {
+				System.err.println("Ne postoji student sa tim id");
+			}else{
+				student.setHobi(studentDTO.getHobi());
+				student.setId(new StudentPK(studentDTO.getIndex()));
+				student.setSport(studentDTO.getSport());
+				student.setOsoba(osobaRepository.findById(studentDTO.getOsoba().getId()).orElse(null));
+
+			}
 		}
 		
-		return null;
+		
 	}
 
 

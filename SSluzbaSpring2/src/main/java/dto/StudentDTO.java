@@ -11,28 +11,12 @@ import model.Osoba;
 import model.Student;
 
 /**
-Created By Marko
+Created By Luka
 */
 
 public class StudentDTO {
 	
-	private int id;
 	
-	@Size(min = 2)
-	@NotEmpty
-	@NotNull
-	private String ime;
-	
-	@Size(min = 2)
-	@NotEmpty
-	@NotNull
-	private String prezime;
-	
-	@NotNull
-	private String pol;
-	
-	@NotNull
-	private String godRodjenja;
 	
 	@NotNull
 	private String sport;
@@ -43,8 +27,16 @@ public class StudentDTO {
 	@NotNull
 	private int index;
 	
-	@NotNull
-	private Osoba osoba; // izbrisati ime prezime srediti sve sutra
+	
+	private OsobaDTO osoba; 
+
+	public OsobaDTO getOsoba() {
+		return osoba;
+	}
+
+	public void setOsoba(OsobaDTO osoba) {
+		this.osoba = osoba;
+	}
 
 	public StudentDTO() {
 		super();
@@ -52,68 +44,22 @@ public class StudentDTO {
 	}
 	
 	public StudentDTO(Student student) {
-		setId(student.getOsobaId());
-		setIme(student.getOsoba().getIme());
-		setPrezime(student.getOsoba().getPrezime());
-		setPol(student.getOsoba().getPol());
-		setGodRodjenja(student.getOsoba().getGodRodjenja().toString());
 		setSport(student.getSport());
 		setHobi(student.getHobi());
-		setIndex(student.getIndex());
+		setIndex(student.getId().getIndex());
+		setOsoba(new OsobaDTO(student.getOsoba()));
 	}
 
-	public StudentDTO(int id, String ime, String prezime, String pol, Date godRodjenja, String sport, String hobi,
-			int index) {
+	public StudentDTO(String sport, String hobi,
+			int index, OsobaDTO osoba) {
 		super();
-		this.id = id;
-		this.ime = ime;
-		this.prezime = prezime;
-		this.pol = pol;
-		this.godRodjenja = godRodjenja.toString();
 		this.sport = sport;
 		this.hobi = hobi;
 		this.index = index;
+		this.osoba = osoba;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getIme() {
-		return ime;
-	}
-
-	public void setIme(String ime) {
-		this.ime = ime;
-	}
-
-	public String getPrezime() {
-		return prezime;
-	}
-
-	public void setPrezime(String prezime) {
-		this.prezime = prezime;
-	}
-
-	public String getPol() {
-		return pol;
-	}
-
-	public void setPol(String pol) {
-		this.pol = pol;
-	}
-
-	public String getGodRodjenja() {
-		return godRodjenja;
-	}
-
-	public void setGodRodjenja(String string) {
-		this.godRodjenja = string;
-	}
+	
 
 	public String getSport() {
 		return sport;
@@ -141,8 +87,8 @@ public class StudentDTO {
 
 	@Override
 	public String toString() {
-		return "StudentDTO [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", pol=" + pol + ", godRodjenja="
-				+ godRodjenja + ", sport=" + sport + ", hobi=" + hobi + ", index=" + index + "]";
+		return "StudentDTO [ime="  + osoba.getIme()+ ", prezime=" + osoba.getPrezime()+", pol=" + osoba.getPol()+ ", godRodjenja="
+				+ osoba.getGod_rodjenja()  + ", sport=" + sport + ", hobi=" + hobi + ", index=" + index + "]";
 	}
 	
 }

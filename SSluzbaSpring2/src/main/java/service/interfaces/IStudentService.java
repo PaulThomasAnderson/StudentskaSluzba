@@ -5,12 +5,12 @@ import java.util.List;
 import dto.StudentDTO;
 
 /**
-Created By Marko
+Created By Luka
 */
 
 public interface IStudentService {
 	
-	StudentDTO save(StudentDTO studentDto);
+	void save(StudentDTO studentDto);
 	
 	
 	List<StudentDTO> getListStudents(String firstName, String lastName);

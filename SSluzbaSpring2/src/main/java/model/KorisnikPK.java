@@ -14,7 +14,7 @@ public class KorisnikPK implements Serializable {
 
 	private int id;
 
-	@Column(name="osoba_id", insertable=false, updatable=false)
+	@Column(name="osoba_id")
 	private int osobaId;
 
 	public KorisnikPK() {
